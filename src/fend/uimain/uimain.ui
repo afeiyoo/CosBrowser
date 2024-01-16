@@ -6,14 +6,75 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>956</width>
+    <height>581</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
+  <layout class="QHBoxLayout" name="horizontalLayout">
+   <item>
+    <widget class="QSplitter" name="splitter">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <widget class="BucketsWidget" name="widgetBuckets" native="true"/>
+     <widget class="QWidget" name="">
+      <layout class="QVBoxLayout" name="verticalLayout" stretch="0,0,1,0">
+       <item>
+        <widget class="ToolbarWidget" name="widgetToolbar" native="true"/>
+       </item>
+       <item>
+        <widget class="BreadWidget" name="widgetBread" native="true"/>
+       </item>
+       <item>
+        <widget class="ObjectsWidget" name="widgetObjects" native="true"/>
+       </item>
+       <item>
+        <widget class="PageWidget" name="widgetPage" native="true"/>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+  </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>BucketsWidget</class>
+   <extends>QWidget</extends>
+   <header>src/fend/uimain/bucketswidget.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>ToolbarWidget</class>
+   <extends>QWidget</extends>
+   <header>src/fend/uimain/toolbarwidget.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>PageWidget</class>
+   <extends>QWidget</extends>
+   <header>src/fend/uicom/pagewidget.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>ObjectsWidget</class>
+   <extends>QWidget</extends>
+   <header>src/fend/uimain/objectswidget.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>BreadWidget</class>
+   <extends>QWidget</extends>
+   <header>src/fend/uicom/breadwidget.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

@@ -10,12 +10,27 @@ CONFIG += c++17
 
 SOURCES += \
     main.cpp \
+    src/fend/uicom/breadwidget.cpp \
+    src/fend/uicom/pagewidget.cpp \
+    src/fend/uimain/bucketswidget.cpp \
+    src/fend/uimain/objectswidget.cpp \
+    src/fend/uimain/toolbarwidget.cpp \
     src/fend/uimain/uimain.cpp
 
 HEADERS += \
+    src/fend/uicom/breadwidget.h \
+    src/fend/uicom/pagewidget.h \
+    src/fend/uimain/bucketswidget.h \
+    src/fend/uimain/objectswidget.h \
+    src/fend/uimain/toolbarwidget.h \
     src/fend/uimain/uimain.h
 
 FORMS += \
+    src/fend/uicom/breadwidget.ui \
+    src/fend/uicom/pagewidget.ui \
+    src/fend/uimain/bucketswidget.ui \
+    src/fend/uimain/objectswidget.ui \
+    src/fend/uimain/toolbarwidget.ui \
     src/fend/uimain/uimain.ui
 
 # Default rules for deployment.
