@@ -15,6 +15,9 @@ public:
     explicit ToolbarWidget(QWidget *parent = nullptr);
     ~ToolbarWidget();
 
+signals:
+    void quitLogin();
+
 private:
     Ui::ToolbarWidget *ui;
 };

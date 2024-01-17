@@ -6,9 +6,11 @@ ToolbarWidget::ToolbarWidget(QWidget *parent)
     , ui(new Ui::ToolbarWidget)
 {
     ui->setupUi(this);
+    connect(ui->btnQuit, &QPushButton::clicked, this, &ToolbarWidget::quitLogin);
 }
 
 ToolbarWidget::~ToolbarWidget()
 {
     delete ui;
 }
+

@@ -13,4 +13,20 @@ UiMain::UiMain(QWidget *parent)
 UiMain::~UiMain()
 {
     delete ui;
+    if(m_loginDialog != nullptr){
+        delete m_loginDialog;
+    }
+}
+
+void UiMain::showLoginDialog()
+{
+    if(m_loginDialog == nullptr){
+        m_loginDialog = new LoginDialog();  //顶层窗口，不需要设置父窗口
+        //绑定登录成功信号
+        connect(m_loginDialog, &LoginDialog::accepted, this, &UiMain::show);
+        //绑定退出登录信号
+        connect(ui->widgetToolbar, &ToolbarWidget::quitLogin, this, &UiMain::showLoginDialog);
+    }
+    hide();
+    m_loginDialog->show();
 }

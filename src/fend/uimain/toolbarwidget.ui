@@ -95,7 +95,7 @@
     </spacer>
    </item>
    <item>
-    <widget class="QPushButton" name="pushButton_5">
+    <widget class="QPushButton" name="btnQuit">
      <property name="maximumSize">
       <size>
        <width>60</width>
