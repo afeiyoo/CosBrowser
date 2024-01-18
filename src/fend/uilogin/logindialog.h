@@ -1,4 +1,4 @@
-#ifndef LOGINDIALOG_H
+﻿#ifndef LOGINDIALOG_H
 #define LOGINDIALOG_H
 
 #include <QDialog>
@@ -17,6 +17,11 @@ public:
     LoginDialog(QWidget *parent = nullptr);
     ~LoginDialog();
 
+protected:
+    void mousePressEvent(QMouseEvent *event);
+
+    void mouseMoveEvent(QMouseEvent *event);
+
 private slots:
     void on_btnClose_clicked();
 
@@ -24,5 +29,7 @@ private slots:
 
 private:
     Ui::LoginDialog *ui;
+    /** 记录鼠标的初始位置 */
+    QPoint m_start;
 };
 #endif // LOGINDIALOG_H
