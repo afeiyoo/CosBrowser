@@ -11,6 +11,7 @@ CONFIG += c++17
 SOURCES += \
     main.cpp \
     src/fend/uicom/breadwidget.cpp \
+    src/fend/uicom/mylineedit.cpp \
     src/fend/uicom/pagewidget.cpp \
     src/fend/uilogin/logindialog.cpp \
     src/fend/uimain/bucketswidget.cpp \
@@ -20,6 +21,7 @@ SOURCES += \
 
 HEADERS += \
     src/fend/uicom/breadwidget.h \
+    src/fend/uicom/mylineedit.h \
     src/fend/uicom/pagewidget.h \
     src/fend/uilogin/logindialog.h \
     src/fend/uimain/bucketswidget.h \
