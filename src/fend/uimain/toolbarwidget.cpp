@@ -1,4 +1,4 @@
-#include "toolbarwidget.h"
+﻿#include "toolbarwidget.h"
 #include "ui_toolbarwidget.h"
 
 ToolbarWidget::ToolbarWidget(QWidget *parent)
@@ -12,5 +12,11 @@ ToolbarWidget::ToolbarWidget(QWidget *parent)
 ToolbarWidget::~ToolbarWidget()
 {
     delete ui;
+}
+
+
+void ToolbarWidget::on_btnUpload_clicked()
+{
+
 }
 

@@ -1,8 +1,8 @@
-#ifndef UIMAIN_H
+﻿#ifndef UIMAIN_H
 #define UIMAIN_H
 
 #include <QWidget>
-#include <src/fend/uilogin/logindialog.h>
+#include "src/fend/uilogin/logindialog.h"
 
 namespace Ui {
 class UiMain;

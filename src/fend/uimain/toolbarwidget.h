@@ -1,4 +1,4 @@
-#ifndef TOOLBARWIDGET_H
+﻿#ifndef TOOLBARWIDGET_H
 #define TOOLBARWIDGET_H
 
 #include <QWidget>
@@ -17,6 +17,9 @@ public:
 
 signals:
     void quitLogin();
+
+private slots:
+    void on_btnUpload_clicked();
 
 private:
     Ui::ToolbarWidget *ui;
