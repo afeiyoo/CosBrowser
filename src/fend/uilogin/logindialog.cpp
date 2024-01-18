@@ -1,7 +1,8 @@
-#include "logindialog.h"
+﻿#include "logindialog.h"
 #include "ui_logindialog.h"
 
 #include <QMessageBox>
+#include <QMouseEvent>
 #include <QString>
 
 LoginDialog::LoginDialog(QWidget *parent)
@@ -19,6 +20,24 @@ LoginDialog::LoginDialog(QWidget *parent)
 LoginDialog::~LoginDialog()
 {
     delete ui;
+}
+
+void LoginDialog::mousePressEvent(QMouseEvent *event)
+{
+    if(event->button() == Qt::LeftButton){
+        m_start = event->pos(); //返回的是相对于当前控件原点的位置
+    }
+    QDialog::mousePressEvent(event);    //调用基类的处理函数
+}
+
+void LoginDialog::mouseMoveEvent(QMouseEvent *event)
+{
+    if(event->buttons() & Qt::LeftButton){
+        //鼠标偏移量+控件原点位置
+        QPoint targetPos = event->pos() - m_start + pos();
+        this->move(targetPos);
+    }
+    QDialog::mouseMoveEvent(event);
 }
 
 void LoginDialog::on_btnClose_clicked()

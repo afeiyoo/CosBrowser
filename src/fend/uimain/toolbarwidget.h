@@ -1,4 +1,4 @@
-#ifndef TOOLBARWIDGET_H
+﻿#ifndef TOOLBARWIDGET_H
 #define TOOLBARWIDGET_H
 
 #include <QWidget>
