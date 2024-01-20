@@ -22,6 +22,8 @@ protected:
 
     void mouseMoveEvent(QMouseEvent *event);
 
+    bool eventFilter(QObject *watched, QEvent *event);
+
 private slots:
     void on_btnClose_clicked();
 
