@@ -12,12 +12,21 @@ LoginDialog::LoginDialog(QWidget *parent)
     ui->setupUi(this);
     //取消默认标题栏
     this->setWindowFlags(Qt::CustomizeWindowHint);
-    //设置图标
-    QPixmap pixmap("F:/030_Study/Code/CosBrowser/u-logoa.jpg");
-    ui->labelLogo->setPixmap(pixmap.scaled(ui->labelLogo->size()));
+
+    //Deprecated 2024-01-20 改用qss文件进行设置
+    // QPixmap pixmap("F:/030_Study/Code/CosBrowser/u-logoa.jpg");
+    // ui->labelLogo->setPixmap(pixmap.scaled(ui->labelLogo->size()));
 
     //lineSecretKey控件安装事件过滤器
     ui->lineSecretKey->installEventFilter(this);
+
+    // style是一个自定义属性，用于属性选择器
+    ui->labelTitle->setProperty("style", "h3");
+    ui->labelSecretID->setProperty("style", "h4");
+    ui->labelSecretKey->setProperty("style", "h4");
+    ui->labelRemark->setProperty("style", "h4");
+    ui->btnClose->setProperty("style", "h4");
+    ui->btnLogin->setProperty("style", "h4");
 }
 
 
