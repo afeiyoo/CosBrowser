@@ -20,6 +20,9 @@ public:
 
     void showLoginDialog();
 
+private slots:
+    void onButtonClicked(const QString &text);
+
 private:
     Ui::UiMain *ui;
 
