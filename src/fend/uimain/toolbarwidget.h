@@ -17,6 +17,7 @@ public:
 
 signals:
     void quitLogin();
+    void buttonClicked(const QString& text);
 
 private:
     Ui::ToolbarWidget *ui;

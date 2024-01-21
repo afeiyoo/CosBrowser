@@ -1,5 +1,7 @@
-#include "uimain.h"
+﻿#include "uimain.h"
 #include "ui_uimain.h"
+
+#include <QDebug>
 
 UiMain::UiMain(QWidget *parent)
     : QWidget(parent)
@@ -8,6 +10,8 @@ UiMain::UiMain(QWidget *parent)
     ui->setupUi(this);
     ui->splitter->setStretchFactor(0, 1);
     ui->splitter->setStretchFactor(1, 4);
+
+    connect(ui->widgetToolbar, &ToolbarWidget::buttonClicked, this, &UiMain::onButtonClicked);
 }
 
 UiMain::~UiMain()
@@ -29,4 +33,14 @@ void UiMain::showLoginDialog()
     }
     hide();
     m_loginDialog->show();
+}
+
+void UiMain::onButtonClicked(const QString &text)
+{
+    qDebug()<<text;
+    if(text == QString::fromLocal8Bit("上传")){
+        //....
+    }else if(text == QString::fromLocal8Bit("下载")){
+        //....
+    }
 }
