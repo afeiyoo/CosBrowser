@@ -2,5 +2,7 @@
     <qresource prefix="/">
         <file>static/imgs/qt.png</file>
         <file>static/qss/default.qss</file>
+        <file>static/testing/buckets1.json</file>
+        <file>static/testing/buckets2.json</file>
     </qresource>
 </RCC>
