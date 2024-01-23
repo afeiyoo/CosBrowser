@@ -29,10 +29,10 @@ void ManBuckets::setBuckets()
         m_model->setData(index0, QString::fromLocal8Bit("存储桶名称: %1").arg(bucket.name), Qt::ToolTipRole);
 
         QModelIndex index1 = m_model->index(i, 1);
-        m_model->setData(index1, bucket.name);
+        m_model->setData(index1, bucket.location);
 
         QModelIndex index2 = m_model->index(i, 2);
-        m_model->setData(index2, bucket.name);
+        m_model->setData(index2, bucket.createDate);
     }
 
     qDebug() << "setBuckets";
