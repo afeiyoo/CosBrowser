@@ -10,6 +10,8 @@ CONFIG += c++17
 
 SOURCES += \
     main.cpp \
+    src/bend/dao/daobuckets.cpp \
+    src/bend/models/mybucket.cpp \
     src/fend/uicom/breadwidget.cpp \
     src/fend/uicom/mylineedit.cpp \
     src/fend/uicom/pagewidget.cpp \
@@ -21,6 +23,8 @@ SOURCES += \
     src/helper/filehelper.cpp
 
 HEADERS += \
+    src/bend/dao/daobuckets.h \
+    src/bend/models/mybucket.h \
     src/fend/uicom/breadwidget.h \
     src/fend/uicom/mylineedit.h \
     src/fend/uicom/pagewidget.h \
