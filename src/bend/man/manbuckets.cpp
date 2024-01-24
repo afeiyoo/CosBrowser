@@ -3,7 +3,7 @@
 #include "src/bend/dao/daobuckets.h"
 
 //单例模式
-Q_GLOBAL_STATIC(ManBuckets, ins);
+Q_GLOBAL_STATIC(ManBuckets, ins)
 
 ManBuckets::ManBuckets(QObject *parent)
     : QObject{parent}
@@ -21,7 +21,15 @@ void ManBuckets::setBuckets()
     DaoBuckets dao;
     QList<MyBucket> buckets = dao.bucketsFromMock(":/static/testing/buckets2.json");
     m_model->setRowCount(buckets.size());
-    m_model->setColumnCount(3);
+
+    //设置表格标题内容
+    QStringList labels;
+    labels<<QString::fromLocal8Bit("桶名称")
+           <<QString::fromLocal8Bit("地区")
+           <<QString::fromLocal8Bit("创建时间");
+    m_model->setColumnCount(labels.size());
+    m_model->setHorizontalHeaderLabels(labels);
+
     for(int i = 0; i < buckets.size(); ++i){
         const MyBucket& bucket = buckets[i];
         QModelIndex index0 = m_model->index(i, 0);

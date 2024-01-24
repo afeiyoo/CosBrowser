@@ -1,4 +1,4 @@
-QT       += core gui
+QT       += core gui sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -12,6 +12,7 @@ SOURCES += \
     main.cpp \
     src/bend/dao/daobuckets.cpp \
     src/bend/man/manbuckets.cpp \
+    src/bend/man/mandb.cpp \
     src/bend/models/mybucket.cpp \
     src/fend/uicom/breadwidget.cpp \
     src/fend/uicom/mylineedit.cpp \
@@ -22,11 +23,13 @@ SOURCES += \
     src/fend/uimain/objectswidget.cpp \
     src/fend/uimain/toolbarwidget.cpp \
     src/fend/uimain/uimain.cpp \
+    src/helper/dbsqlite.cpp \
     src/helper/filehelper.cpp
 
 HEADERS += \
     src/bend/dao/daobuckets.h \
     src/bend/man/manbuckets.h \
+    src/bend/man/mandb.h \
     src/bend/models/mybucket.h \
     src/fend/uicom/breadwidget.h \
     src/fend/uicom/mylineedit.h \
@@ -37,6 +40,7 @@ HEADERS += \
     src/fend/uimain/objectswidget.h \
     src/fend/uimain/toolbarwidget.h \
     src/fend/uimain/uimain.h \
+    src/helper/dbsqlite.h \
     src/helper/filehelper.h
 
 FORMS += \
