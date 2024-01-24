@@ -31,6 +31,7 @@ HEADERS += \
     src/bend/man/manbuckets.h \
     src/bend/man/mandb.h \
     src/bend/models/mybucket.h \
+    src/config/config.h \
     src/fend/uicom/breadwidget.h \
     src/fend/uicom/mylineedit.h \
     src/fend/uicom/pagewidget.h \
