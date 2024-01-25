@@ -21,6 +21,8 @@ signals:
 private:
     void connect();
 
+    void createLoginInfoTable();
+
     DbSqlite m_db;
 };
 

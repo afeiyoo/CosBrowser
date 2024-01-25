@@ -18,6 +18,10 @@ namespace SQLITE {
 static const QString NAME = FileHelper::joinPath(PATH::TMP, "cos.db");
 }
 
+namespace SQL{
+static const QString LOGIN_INFO_TABLE = ":/static/sql/login_info.sql";
+}
+
 static bool init(){
     return FileHelper::mkPath(PATH::TMP);
 }
