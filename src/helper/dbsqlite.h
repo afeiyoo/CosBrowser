@@ -21,6 +21,8 @@ public:
 
     QSqlQuery exec(const QString &sql);
 
+    QSqlQuery exec(const QString &sql, const QVariantList& variantList);
+
     bool exists(const QString &sql);
 
     QList<RECORD> select(const QString &sql);
