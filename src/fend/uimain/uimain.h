@@ -23,6 +23,8 @@ public:
 private slots:
     void onButtonClicked(const QString &text);
 
+    void onUnLogin();
+
 private:
     Ui::UiMain *ui;
 

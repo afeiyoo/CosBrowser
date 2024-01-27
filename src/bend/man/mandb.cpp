@@ -20,6 +20,7 @@ void ManDB::init()
 {
     m_daoLoginInfo.connect();
     m_daoLoginInfo.createTable();
+    m_loginInfoList = m_daoLoginInfo.select();
 }
 
 void ManDB::saveLoginInfo(const QString &name, const QString &id, const QString &key, const QString &remark)
@@ -32,13 +33,46 @@ void ManDB::saveLoginInfo(const QString &name, const QString &id, const QString 
     info.timestamp = QDateTime::currentDateTimeUtc().toTime_t();
     if(m_daoLoginInfo.exists(info.secret_id)){
         m_daoLoginInfo.update(info);
+        m_loginInfoList[indexOfLoginInfo(info.secret_id)] = info;
     }else{
         m_daoLoginInfo.insert(info);
+        m_loginInfoList.append(info);
     }
 }
 
 void ManDB::removeLoginInfo(const QString &id)
 {
-    if(m_daoLoginInfo.exists(id))
+    if(m_daoLoginInfo.exists(id)){
         m_daoLoginInfo.remove(id);
+        m_loginInfoList.removeAt(indexOfLoginInfo(id));
+    }
+}
+
+int ManDB::indexOfLoginInfo(const QString &secretId)
+{
+    for(int i = 0; i < m_loginInfoList.size(); ++i){
+        if(m_loginInfoList[i].secret_id == secretId){
+            return i;
+        }
+    }
+    throw QString::fromLocal8Bit("获取登录信息索引失败 %1").arg(secretId);
+}
+
+QStringList ManDB::loginNameList()
+{
+    QStringList words;
+    for(int i = 0; i < m_loginInfoList.size(); ++i){
+        words.append(m_loginInfoList[i].name);
+    }
+    return words;
+}
+
+LoginInfo ManDB::loginInfoByName(const QString &name)
+{
+    for(int i = 0; i < m_loginInfoList.size(); ++i){
+        if(m_loginInfoList[i].name == name){
+            return m_loginInfoList[i];
+        }
+    }
+    throw QString::fromLocal8Bit("通过名称查找登录信息失败 %1").arg(name);
 }

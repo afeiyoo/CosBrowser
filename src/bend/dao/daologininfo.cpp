@@ -37,6 +37,28 @@ void DaoLoginInfo::remove(const QString &secretId)
     m_db.exists(sql);
 }
 
+QList<LoginInfo> DaoLoginInfo::select()
+{
+    QString sql = QString("select name, secret_id, secret_key,"
+                          "remark from %1 order by timestamp desc")
+                      .arg(CONF::TABLES::LOGIN_INFO);
+
+    QList<LoginInfo> retList;
+    QList<RECORD> recordList = m_db.select(sql);
+    for(const auto& record: recordList){
+        LoginInfo info;
+        info.name= record["name"].toString();
+        info.secret_id = record["secret_id"].toString();
+        info.secret_key = record["secret_key"].toString();
+        info.remark = record["remark"].toString();
+
+        retList.append(info);
+    }
+
+
+    return retList;
+}
+
 void DaoLoginInfo::connect()
 {
     m_db.connect(CONF::SQLITE::NAME);

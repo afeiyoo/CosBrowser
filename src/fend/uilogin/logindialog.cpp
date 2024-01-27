@@ -2,6 +2,7 @@
 #include "ui_logindialog.h"
 #include "src/bend/man/mandb.h"
 
+#include <QCompleter>
 #include <QMessageBox>
 #include <QMouseEvent>
 #include <QString>
@@ -35,6 +36,22 @@ LoginDialog::LoginDialog(QWidget *parent)
 LoginDialog::~LoginDialog()
 {
     delete ui;
+}
+
+void LoginDialog::updateLoginInfo()
+{
+    QStringList words = MDB->loginNameList();
+    QCompleter* completer = new QCompleter(words);
+    ui->lineLoginName->setCompleter(completer);
+
+    connect(completer, static_cast<void (QCompleter::*)(const QString&)>(&QCompleter::activated),
+            this, [&](const QString& name){
+        LoginInfo info = MDB->loginInfoByName(name);
+        ui->lineSecretID->setText(info.secret_id);
+        ui->lineSecretKey->setText(info.secret_key);
+        ui->lineRemark->setText(info.remark);
+        ui->checkSaveSection->setChecked(true);
+    });
 }
 
 void LoginDialog::mousePressEvent(QMouseEvent *event)
@@ -97,7 +114,13 @@ void LoginDialog::on_btnLogin_clicked()
             //删除登录信息
             MDB->removeLoginInfo(ui->lineSecretID->text());
         }
+        updateLoginInfo();
     }else{
+        ui->lineSecretID->clear();
+        ui->lineSecretKey->clear();
+        ui->lineLoginName->clear();
+        ui->lineRemark->clear();
+        ui->checkSaveSection->setChecked(false);
         QMessageBox::warning(this, QString::fromLocal8Bit("登录失败"),
                              QString::fromLocal8Bit("请检查SecretID或者SecretKey是否正确"));
     }

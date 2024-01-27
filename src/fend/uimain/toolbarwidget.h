@@ -16,7 +16,6 @@ public:
     ~ToolbarWidget();
 
 signals:
-    void quitLogin();
     void buttonClicked(const QString& text);
 
 private:

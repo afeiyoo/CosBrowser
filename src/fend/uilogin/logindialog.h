@@ -17,6 +17,7 @@ public:
     LoginDialog(QWidget *parent = nullptr);
     ~LoginDialog();
 
+    void updateLoginInfo();
 protected:
     void mousePressEvent(QMouseEvent *event);
 

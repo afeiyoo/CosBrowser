@@ -19,6 +19,8 @@ public:
 
     void remove(const QString& secretId);
 
+    QList<LoginInfo> select();
+
     void connect();
 
     void createTable();
