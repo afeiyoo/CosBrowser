@@ -8,7 +8,6 @@ ToolbarWidget::ToolbarWidget(QWidget *parent)
     , ui(new Ui::ToolbarWidget)
 {
     ui->setupUi(this);
-    connect(ui->btnQuit, &QPushButton::clicked, this, &ToolbarWidget::quitLogin);
 
     //使用SignalMapper避免大量的信号槽绑定
     QSignalMapper *mapper = new QSignalMapper(this);
