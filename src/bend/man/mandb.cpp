@@ -1,5 +1,5 @@
 ﻿#include "mandb.h"
-#include "src/config/config.h"
+#include <QDateTime>
 #include <QDebug>
 
 //单例模式
@@ -18,17 +18,27 @@ ManDB *ManDB::instance()
 
 void ManDB::init()
 {
-    connect();
-    createLoginInfoTable();
+    m_daoLoginInfo.connect();
+    m_daoLoginInfo.createTable();
 }
 
-void ManDB::connect()
+void ManDB::saveLoginInfo(const QString &name, const QString &id, const QString &key, const QString &remark)
 {
-    m_db.connect(CONF::SQLITE::NAME);
+    LoginInfo info;
+    info.name = (name == "" ? id : name);
+    info.secret_id = id.trimmed();
+    info.secret_key = key.trimmed();
+    info.remark = remark.trimmed();
+    info.timestamp = QDateTime::currentDateTimeUtc().toTime_t();
+    if(m_daoLoginInfo.exists(info.secret_id)){
+        m_daoLoginInfo.update(info);
+    }else{
+        m_daoLoginInfo.insert(info);
+    }
 }
 
-void ManDB::createLoginInfoTable()
+void ManDB::removeLoginInfo(const QString &id)
 {
-    QString sql = FileHelper::readAllTxt(CONF::SQL::LOGIN_INFO_TABLE);
-    m_db.exec(sql);
+    if(m_daoLoginInfo.exists(id))
+        m_daoLoginInfo.remove(id);
 }

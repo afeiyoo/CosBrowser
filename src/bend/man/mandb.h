@@ -3,7 +3,7 @@
 
 #include <QObject>
 
-#include "src/helper/dbsqlite.h"
+#include "src/bend/dao/daologininfo.h"
 
 #define MDB ManDB::instance()
 
@@ -16,14 +16,15 @@ public:
     static ManDB* instance();
 
     void init();
+
+    void saveLoginInfo(const QString& name, const QString& id, const QString& key,
+                       const QString& remark);
+
+    void removeLoginInfo(const QString& id);
 signals:
 
 private:
-    void connect();
-
-    void createLoginInfoTable();
-
-    DbSqlite m_db;
+    DaoLoginInfo m_daoLoginInfo;
 };
 
 #endif // MANDB_H

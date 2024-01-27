@@ -1,5 +1,6 @@
 ﻿#include "logindialog.h"
 #include "ui_logindialog.h"
+#include "src/bend/man/mandb.h"
 
 #include <QMessageBox>
 #include <QMouseEvent>
@@ -23,6 +24,7 @@ LoginDialog::LoginDialog(QWidget *parent)
     // style是一个自定义属性，用于属性选择器
     ui->labelTitle->setProperty("style", "h3");
     ui->labelSecretID->setProperty("style", "h4");
+    ui->labelLoginName->setProperty("style", "h4");
     ui->labelSecretKey->setProperty("style", "h4");
     ui->labelRemark->setProperty("style", "h4");
     ui->btnClose->setProperty("style", "h4");
@@ -81,7 +83,20 @@ void LoginDialog::on_btnLogin_clicked()
     //进行登录信息验证
     if(ui->lineSecretID->text().trimmed() == "zhangsan" &&
         ui->lineSecretKey->text().trimmed() == "123"){
-        accept();   //关闭自身，并发送accepted信号
+        accept();   //关闭自身，并发送accepted信号(显示主窗口)
+
+        if(ui->checkSaveSection->isChecked()){
+            //保存登录信息
+            MDB->saveLoginInfo(
+                ui->lineLoginName->text(),
+                ui->lineSecretID->text(),
+                ui->lineSecretKey->text(),
+                ui->lineRemark->text()
+            );
+        }else{
+            //删除登录信息
+            MDB->removeLoginInfo(ui->lineSecretID->text());
+        }
     }else{
         QMessageBox::warning(this, QString::fromLocal8Bit("登录失败"),
                              QString::fromLocal8Bit("请检查SecretID或者SecretKey是否正确"));

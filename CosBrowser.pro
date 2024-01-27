@@ -11,6 +11,7 @@ CONFIG += c++17
 SOURCES += \
     main.cpp \
     src/bend/dao/daobuckets.cpp \
+    src/bend/dao/daologininfo.cpp \
     src/bend/man/manbuckets.cpp \
     src/bend/man/mandb.cpp \
     src/bend/models/mybucket.cpp \
@@ -28,8 +29,10 @@ SOURCES += \
 
 HEADERS += \
     src/bend/dao/daobuckets.h \
+    src/bend/dao/daologininfo.h \
     src/bend/man/manbuckets.h \
     src/bend/man/mandb.h \
+    src/bend/models/dbmodels.h \
     src/bend/models/mybucket.h \
     src/config/config.h \
     src/fend/uicom/breadwidget.h \

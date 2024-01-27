@@ -3,6 +3,7 @@
 
 #include <QSqlDatabase>
 #include <QString>
+#include <QSqlQuery>
 
 class DbSqlite
 {
@@ -11,10 +12,12 @@ public:
 
     ~DbSqlite();
 
+
     void connect(const QString& dbPath);
 
-    void exec(const QString &sql);
+    QSqlQuery exec(const QString &sql);
 
+    bool exists(const QString &sql);
 private:
     QSqlDatabase m_db;
 };
