@@ -32,6 +32,23 @@ QSqlQuery DbSqlite::exec(const QString &sql)
     return query;
 }
 
+QSqlQuery DbSqlite::exec(const QString &sql, const QVariantList &variantList)
+{
+    QSqlQuery query;
+    if(!query.prepare(sql)){
+        throw QString::fromLocal8Bit("预编译sql失败: %1 %2").arg(sql, query.lastError().text());
+    }
+
+    for(const auto& var : variantList){
+        query.addBindValue(var);
+    }
+
+    if(!query.exec()){
+        throw QString::fromLocal8Bit("执行sql bindvalue失败: %1 %2").arg(sql, query.lastError().text());
+    }
+    return query;
+}
+
 bool DbSqlite::exists(const QString &sql)
 {
     QSqlQuery query = exec(sql);
