@@ -1,16 +1,18 @@
-﻿#include "daobuckets.h"
+﻿#include "daocloudsmock.h"
 #include "src/helper/filehelper.h"
 
 #include <QJsonArray>
 
-DaoBuckets::DaoBuckets() {}
+DaoCloudsMock::DaoCloudsMock(const QString& path)
+{
+    m_mock = FileHelper::readAllJson(path).toJsonValue();
+}
 
-QList<MyBucket> DaoBuckets::bucketsFromMock(const QString &path)
+QList<MyBucket> DaoCloudsMock::buckets()
 {
     QList<MyBucket> res;
 
-    QVariant var = FileHelper::readAllJson(path);
-    QJsonArray arr = var.toJsonArray();
+    QJsonArray arr = m_mock["buckets"].toArray();
     for(int i = 0; i < arr.count(); ++i){
         QJsonValue v = arr[i];
         MyBucket bucket;

@@ -3,7 +3,7 @@
 
 #include <QObject>
 
-#include "src/bend/dao/daologininfo.h"
+#include "src/bend/dao/dbs/daologininfosqlite.h"
 
 #define MDB ManDB::instance()
 
@@ -30,7 +30,7 @@ public:
 signals:
 
 private:
-    DaoLoginInfo m_daoLoginInfo;
+    DaoLoginInfoSqlite m_daoLoginInfo;
 
     QList<LoginInfo> m_loginInfoList;
 };
