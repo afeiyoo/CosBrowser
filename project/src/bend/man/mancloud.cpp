@@ -1,25 +1,26 @@
-﻿#include "manbuckets.h"
+﻿#include "mancloud.h"
 #include <QDebug>
-#include "src/bend/dao/daobuckets.h"
+#include "src/bend/dao/clouds/daocloudsmock.h"
+#include "src/plugins/manplugin.h"
 
 //单例模式
-Q_GLOBAL_STATIC(ManBuckets, ins)
+Q_GLOBAL_STATIC(ManCloud, ins)
 
-ManBuckets::ManBuckets(QObject *parent)
+ManCloud::ManCloud(QObject *parent)
     : QObject{parent}
 {
     m_model = new QStandardItemModel(this);
 }
 
-ManBuckets *ManBuckets::instance()
+ManCloud *ManCloud::instance()
 {
     return ins();
 }
 
-void ManBuckets::setBuckets()
+void ManCloud::setBuckets()
 {
-    DaoBuckets dao;
-    QList<MyBucket> buckets = dao.bucketsFromMock(":/static/testing/buckets2.json");
+    DaoClouds* dao = MP->clouds();
+    QList<MyBucket> buckets = dao->buckets();
     m_model->setRowCount(buckets.size());
 
     //设置表格标题内容
@@ -46,7 +47,7 @@ void ManBuckets::setBuckets()
     qDebug() << "setBuckets";
 }
 
-QStandardItemModel *ManBuckets::model() const
+QStandardItemModel *ManCloud::model() const
 {
     return m_model;
 }

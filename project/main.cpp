@@ -1,6 +1,6 @@
 ﻿#include "src/fend/uimain/uimain.h"
 #include "src/helper/filehelper.h"
-#include "src/bend/man/manbuckets.h"
+#include "src/bend/man/mancloud.h"
 #include "src/bend/man/mandb.h"
 
 #include <QApplication>
@@ -17,7 +17,7 @@ int main(int argc, char *argv[])
 
     MDB->init();
 
-    MB->setBuckets();
+    MC->setBuckets();
 
     UiMain w;
     w.showLoginDialog();    //显示登录窗口

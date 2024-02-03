@@ -10,11 +10,10 @@ CONFIG += c++17
 
 SOURCES += \
     main.cpp \
-    src/bend/dao/daobuckets.cpp \
-    src/bend/dao/daologininfo.cpp \
-    src/bend/man/manbuckets.cpp \
+    src/bend/dao/clouds/daocloudsmock.cpp \
+    src/bend/dao/dbs/daologininfosqlite.cpp \
+    src/bend/man/mancloud.cpp \
     src/bend/man/mandb.cpp \
-    src/middle/models/mybucket.cpp \
     src/fend/uicom/breadwidget.cpp \
     src/fend/uicom/mylineedit.cpp \
     src/fend/uicom/pagewidget.cpp \
@@ -25,15 +24,19 @@ SOURCES += \
     src/fend/uimain/toolbarwidget.cpp \
     src/fend/uimain/uimain.cpp \
     src/helper/dbsqlite.cpp \
-    src/helper/filehelper.cpp
+    src/helper/filehelper.cpp \
+    src/middle/models/cloudmodels.cpp \
+    src/plugins/manplugin.cpp
 
 HEADERS += \
-    src/bend/dao/daobuckets.h \
-    src/bend/dao/daologininfo.h \
-    src/bend/man/manbuckets.h \
+    src/bend/dao/clouds/daoclouds.h \
+    src/bend/dao/clouds/daocloudsmock.h \
+    src/bend/dao/dbs/daologininfo.h \
+    src/bend/dao/dbs/daologininfosqlite.h \
+    src/bend/man/mancloud.h \
     src/bend/man/mandb.h \
+    src/middle/models/cloudmodels.h \
     src/middle/models/dbmodels.h \
-    src/middle/models/mybucket.h \
     src/config/config.h \
     src/fend/uicom/breadwidget.h \
     src/fend/uicom/mylineedit.h \
@@ -45,7 +48,8 @@ HEADERS += \
     src/fend/uimain/toolbarwidget.h \
     src/fend/uimain/uimain.h \
     src/helper/dbsqlite.h \
-    src/helper/filehelper.h
+    src/helper/filehelper.h \
+    src/plugins/manplugin.h
 
 FORMS += \
     src/fend/uicom/breadwidget.ui \
