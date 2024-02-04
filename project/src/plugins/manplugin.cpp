@@ -4,6 +4,8 @@
 #include "src/bend/dao/configs/versionjson.h"
 #include "src/config/globals.h"
 #include "src/bend/dao/configs/versioncmd.h"
+#include "src/bend/dao/logs/loggerqdebug.h"
+#include "src/config/loggerproxy.h"
 
 Q_GLOBAL_STATIC(ManPlugin, ins)
 
@@ -34,6 +36,9 @@ void ManPlugin::installPlugins(int argc, char* argv[])
     }else{
         m_clouds = new DaoCloudsMock(":/static/testing/custom.json");
     }
+
+    //为日志代理单例类安装插件
+    log->setLogger(new LoggerQDebug());
 }
 
 DaoClouds *ManPlugin::clouds() const

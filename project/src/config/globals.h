@@ -12,6 +12,7 @@ namespace GLOBAL {
 namespace PATH {
 static const QString WORK = QDir::currentPath();
 static const QString TMP = FileHelper::joinPath(WORK, "temp");
+static const QString LOG_DIR = FileHelper::joinPath(WORK, "logs");
 }
 
 namespace SQLITE {
@@ -40,8 +41,21 @@ static const QString ENV_PRE = "pre";
 static const QString ENV_PROD = "prod";
 }
 
+enum LOG_LEVEL{
+    TOTAL = 0,
+    DEBUG = 1,
+    INFO = 2,
+    WARNING = 3,
+    ERROR = 4,
+    FATAL = 5
+};
+
+static const QStringList LOG_NAMES
+    = QStringList() << "TOTAL" << "DEBUG" << "INFO"
+                    << "WARNING" << "ERROR" << "FATAL";
+
 static bool init(){
-    return FileHelper::mkPath(PATH::TMP);
+    return FileHelper::mkPath(PATH::TMP) && FileHelper::mkPath(PATH::LOG_DIR);
 }
 
 //程序启动时，调用init函数
