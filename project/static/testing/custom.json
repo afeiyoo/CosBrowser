@@ -10,6 +10,24 @@
             "location": "ap-shanghai",
             "name": "custom-1300416380"
         }
+    ],
+    "users": [
+        {
+            "secretId": "xiaowang",
+            "secretKey": "123"
+        },
+        {
+            "secretId": "xiaochen",
+            "secretKey": "123"
+        },
+        {
+            "secretId": "xiaoqian",
+            "secretKey": "123"
+        },
+        {
+            "secretId": "xiaonan",
+            "secretKey": "123"
+        }
     ]
 }
 
