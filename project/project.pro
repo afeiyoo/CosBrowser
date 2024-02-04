@@ -11,6 +11,9 @@ CONFIG += c++17
 SOURCES += \
     main.cpp \
     src/bend/dao/clouds/daocloudsmock.cpp \
+    src/bend/dao/configs/version.cpp \
+    src/bend/dao/configs/versioncmd.cpp \
+    src/bend/dao/configs/versionjson.cpp \
     src/bend/dao/dbs/daologininfosqlite.cpp \
     src/bend/man/mancloud.cpp \
     src/bend/man/mandb.cpp \
@@ -31,13 +34,16 @@ SOURCES += \
 HEADERS += \
     src/bend/dao/clouds/daoclouds.h \
     src/bend/dao/clouds/daocloudsmock.h \
+    src/bend/dao/configs/version.h \
+    src/bend/dao/configs/versioncmd.h \
+    src/bend/dao/configs/versionjson.h \
     src/bend/dao/dbs/daologininfo.h \
     src/bend/dao/dbs/daologininfosqlite.h \
     src/bend/man/mancloud.h \
     src/bend/man/mandb.h \
+    src/config/globals.h \
     src/middle/models/cloudmodels.h \
     src/middle/models/dbmodels.h \
-    src/config/config.h \
     src/fend/uicom/breadwidget.h \
     src/fend/uicom/mylineedit.h \
     src/fend/uicom/pagewidget.h \

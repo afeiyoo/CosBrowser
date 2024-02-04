@@ -6,6 +6,7 @@
 #define MP ManPlugin::instance()
 
 class DaoClouds;
+class Version;
 
 class ManPlugin : public QObject
 {
@@ -17,13 +18,14 @@ public:
 
     DaoClouds *clouds() const;
 
+    ~ManPlugin();
+
+    void installPlugins(int argc, char* argv[]);
 signals:
 
 private:
-    void installPlugins();
-
-private:
     DaoClouds* m_clouds;    //不能使用派生类作为类型
+    Version* m_version;
 };
 
 #endif // MANPLUGIN_H

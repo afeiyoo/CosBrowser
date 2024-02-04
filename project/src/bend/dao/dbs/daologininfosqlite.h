@@ -2,7 +2,7 @@
 #define DAOLOGININFOSQLITE_H
 
 #include "src/helper/dbsqlite.h"
-#include "src/config/config.h"
+#include "src/config/globals.h"
 #include "src/middle/models/dbmodels.h"
 #include "src/bend/dao/dbs/daologininfo.h"
 

@@ -5,7 +5,7 @@ DaoLoginInfoSqlite::DaoLoginInfoSqlite() {}
 bool DaoLoginInfoSqlite::exists(const QString &secretId)
 {
     QString sql = QString("select id from %1 where secret_id = '%2'")
-                         .arg(CONF::TABLES::LOGIN_INFO, secretId);
+                         .arg(GLOBAL::TABLES::LOGIN_INFO, secretId);
     return m_db.exists(sql);
 }
 
@@ -14,7 +14,7 @@ void DaoLoginInfoSqlite::insert(const LoginInfo &info)
     //字符串不要加''，直接用?
     QString sql = QString(
                       "insert into %1 (name, secret_id, secret_key, remark, timestamp) "
-                      "values (?, ?, ?, ?, ?)").arg(CONF::TABLES::LOGIN_INFO);
+                      "values (?, ?, ?, ?, ?)").arg(GLOBAL::TABLES::LOGIN_INFO);
     QVariantList varList;
     varList << info.name
             << info.secret_id
@@ -42,7 +42,7 @@ void DaoLoginInfoSqlite::update(const LoginInfo &info)
                       "remark=?, "
                       "timestamp=? "
                       "where secret_id = ?")
-                      .arg(CONF::TABLES::LOGIN_INFO);
+                      .arg(GLOBAL::TABLES::LOGIN_INFO);
     QVariantList varList;
     varList << info.name
             << info.secret_key
@@ -69,7 +69,7 @@ void DaoLoginInfoSqlite::remove(const QString &secretId)
     QString sql = QString(
                       "delete from %1 where  "
                       "secret_id = ?;")
-                      .arg(CONF::TABLES::LOGIN_INFO);
+                      .arg(GLOBAL::TABLES::LOGIN_INFO);
     QVariantList varList;
     varList << secretId;
     m_db.exec(sql, varList);
@@ -86,7 +86,7 @@ QList<LoginInfo> DaoLoginInfoSqlite::select()
 {
     QString sql = QString("select name, secret_id, secret_key,"
                           "remark from %1 order by timestamp desc")
-                      .arg(CONF::TABLES::LOGIN_INFO);
+                      .arg(GLOBAL::TABLES::LOGIN_INFO);
 
     QList<LoginInfo> retList;
     QList<RECORD> recordList = m_db.select(sql);
@@ -106,11 +106,11 @@ QList<LoginInfo> DaoLoginInfoSqlite::select()
 
 void DaoLoginInfoSqlite::connect()
 {
-    m_db.connect(CONF::SQLITE::NAME);
+    m_db.connect(GLOBAL::SQLITE::NAME);
 }
 
 void DaoLoginInfoSqlite::createTable()
 {
-    QString sql = FileHelper::readAllTxt(CONF::SQL::LOGIN_INFO_TABLE);
+    QString sql = FileHelper::readAllTxt(GLOBAL::SQL::LOGIN_INFO_TABLE);
     m_db.exec(sql);
 }
