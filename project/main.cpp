@@ -3,6 +3,7 @@
 #include "src/bend/man/mancloud.h"
 #include "src/bend/man/mandb.h"
 #include "src/plugins/manplugin.h"
+#include "src/config/loggerproxy.h"
 
 #include <QApplication>
 
@@ -22,6 +23,8 @@ int main(int argc, char *argv[])
     MDB->init();
 
     MC->setBuckets();
+
+    mInfo(QString::fromLocal8Bit("主界面程序启动"));
 
     UiMain w;
     w.showLoginDialog();    //显示登录窗口
