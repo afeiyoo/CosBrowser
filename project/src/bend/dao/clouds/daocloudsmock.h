@@ -13,6 +13,8 @@ public:
 
     QList<MyBucket> buckets();
 
+    QList<MyBucket> login(const QString& secretId, const QString& secretKey) override;
+
 private:
     QJsonValue m_mock;
 };
