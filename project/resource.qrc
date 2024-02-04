@@ -2,8 +2,9 @@
     <qresource prefix="/">
         <file>static/imgs/qt.png</file>
         <file>static/qss/default.qss</file>
-        <file>static/testing/buckets1.json</file>
-        <file>static/testing/buckets2.json</file>
+        <file>static/testing/business.json</file>
+        <file>static/testing/custom.json</file>
         <file>static/sql/login_info.sql</file>
+        <file>static/versions/config_default.json</file>
     </qresource>
 </RCC>

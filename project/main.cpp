@@ -2,12 +2,16 @@
 #include "src/helper/filehelper.h"
 #include "src/bend/man/mancloud.h"
 #include "src/bend/man/mandb.h"
+#include "src/plugins/manplugin.h"
 
 #include <QApplication>
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
+
+    GLOBAL::init();
+    MP->installPlugins(argc, argv);
 
     //1. 读取文件中的qss
     QString qssStr = FileHelper::readAllTxt(":/static/qss/default.qss");
