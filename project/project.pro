@@ -33,6 +33,7 @@ SOURCES += \
     src/helper/dbsqlite.cpp \
     src/helper/filehelper.cpp \
     src/middle/models/cloudmodels.cpp \
+    src/middle/signals/mansignals.cpp \
     src/plugins/manplugin.cpp
 
 HEADERS += \
@@ -64,6 +65,7 @@ HEADERS += \
     src/fend/uimain/uimain.h \
     src/helper/dbsqlite.h \
     src/helper/filehelper.h \
+    src/middle/signals/mansignals.h \
     src/plugins/manplugin.h
 
 FORMS += \

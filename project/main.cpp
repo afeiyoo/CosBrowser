@@ -4,6 +4,7 @@
 #include "src/bend/man/mandb.h"
 #include "src/plugins/manplugin.h"
 #include "src/config/loggerproxy.h"
+#include "src/fend/uilogin/logindialog.h"
 
 #include <QApplication>
 
@@ -24,9 +25,12 @@ int main(int argc, char *argv[])
 
     MC->setBuckets();
 
+    //日志打印
     mInfo(QString::fromLocal8Bit("主界面程序启动"));
 
     UiMain w;
-    w.showLoginDialog();    //显示登录窗口
+    LoginDialog login;
+
+    login.show();
     return a.exec();
 }
