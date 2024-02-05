@@ -30,6 +30,10 @@ private slots:
 
     void on_btnLogin_clicked();
 
+    void onLoginSucceed();
+
+    void onLoginError(int api, const QString& msg);
+
 private:
     Ui::LoginDialog *ui;
     /** 记录鼠标的初始位置 */

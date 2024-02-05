@@ -3,6 +3,7 @@
 #include "src/bend/man/mancloud.h"
 #include "src/config/api.h"
 #include "src/config/loggerproxy.h"
+#include "src/middle/signals/mansignals.h"
 
 Q_GLOBAL_STATIC(GateWay, ins)
 
@@ -22,6 +23,7 @@ void GateWay::send(int api, const QJsonValue &value)
             this->dispach(api, value);
         }catch(QString e){
             mError(e);
+            emit MS->error(api, e);
         }
     });
 }
@@ -43,4 +45,5 @@ void GateWay::apiLogin(const QJsonValue &value)
     QString secretId = value["secretId"].toString();
     QString secretKey = value["secretKey"].toString();
     MC->login(secretId, secretKey);
+    emit MS->loginSuccess();    //发送登录成功信号
 }
