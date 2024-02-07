@@ -11,10 +11,11 @@ ManDB::ManDB(QObject *parent)
 
 }
 
-ManDB *ManDB::instance()
+ManDB::~ManDB()
 {
-    return ins();
+    qDebug("delete ManDB ");
 }
+
 
 void ManDB::init()
 {

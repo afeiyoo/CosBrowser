@@ -6,18 +6,12 @@
 #include "src/bend/dao/configs/versioncmd.h"
 #include "src/bend/dao/logs/loggerqdebug.h"
 #include "src/config/loggerproxy.h"
-
-Q_GLOBAL_STATIC(ManPlugin, ins)
+#include "src/middle/manglobal.h"
 
 ManPlugin::ManPlugin(QObject *parent)
     : QObject{parent}
 {
 
-}
-
-ManPlugin* ManPlugin::instance()
-{
-    return ins();
 }
 
 void ManPlugin::installPlugins(int argc, char* argv[])
@@ -38,7 +32,7 @@ void ManPlugin::installPlugins(int argc, char* argv[])
     }
 
     //为日志代理单例类安装插件
-    log->setLogger(new LoggerQDebug());
+    MG->mLog->setLogger(new LoggerQDebug());
 }
 
 DaoClouds *ManPlugin::clouds() const
@@ -50,4 +44,5 @@ ManPlugin::~ManPlugin()
 {
     delete m_clouds;
     delete m_version;
+    qDebug("delete ManPlugin ");
 }

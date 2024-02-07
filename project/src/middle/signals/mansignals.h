@@ -2,8 +2,7 @@
 #define MANSIGNALS_H
 
 #include <QObject>
-
-#define MS ManSignals::instance()
+#include "src/middle/models/cloudmodels.h"
 
 class ManSignals : public QObject
 {
@@ -11,12 +10,12 @@ class ManSignals : public QObject
 public:
     explicit ManSignals(QObject *parent = nullptr);
 
-    static ManSignals* instance();
+    ~ManSignals();
 
 signals:
     void loginSuccess();
     void error(int api, const QString& msg);
-
+    void bucketSuccess(const QList<MyBucket>& buckets);
     void unLogin();
 };
 

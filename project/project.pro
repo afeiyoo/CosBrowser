@@ -32,6 +32,8 @@ SOURCES += \
     src/fend/uimain/uimain.cpp \
     src/helper/dbsqlite.cpp \
     src/helper/filehelper.cpp \
+    src/middle/manglobal.cpp \
+    src/middle/manmodels.cpp \
     src/middle/models/cloudmodels.cpp \
     src/middle/signals/mansignals.cpp \
     src/plugins/manplugin.cpp
@@ -52,6 +54,8 @@ HEADERS += \
     src/config/api.h \
     src/config/globals.h \
     src/config/loggerproxy.h \
+    src/middle/manglobal.h \
+    src/middle/manmodels.h \
     src/middle/models/cloudmodels.h \
     src/middle/models/dbmodels.h \
     src/fend/uicom/breadwidget.h \
