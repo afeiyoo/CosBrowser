@@ -1,6 +1,7 @@
 ﻿#include "toolbarwidget.h"
 #include "ui_toolbarwidget.h"
 #include "src/middle/signals/mansignals.h"
+#include "src/middle/manglobal.h"
 
 #include <QSignalMapper>
 
@@ -28,6 +29,6 @@ ToolbarWidget::~ToolbarWidget()
 
 void ToolbarWidget::on_btnQuit_clicked()
 {
-    emit MS->unLogin(); //发送退出登录信号
+    emit MG->mSignal->unLogin(); //发送退出登录信号
 }
 

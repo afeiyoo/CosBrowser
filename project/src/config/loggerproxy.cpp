@@ -1,9 +1,6 @@
 ﻿#include "loggerproxy.h"
 #include "qthread.h"
 
-//单例模式
-Q_GLOBAL_STATIC(LoggerProxy, ins)
-
 LoggerProxy::LoggerProxy(QObject *parent)
     : QObject{parent}
 {
@@ -17,11 +14,6 @@ LoggerProxy::~LoggerProxy()
         m_logger = nullptr;
     }
     qDebug("delete LoggerProxy ");
-}
-
-LoggerProxy *LoggerProxy::instance()
-{
-    return ins();
 }
 
 const LoggerProxy &LoggerProxy::reset(const QString &file, int line, const QString &func)

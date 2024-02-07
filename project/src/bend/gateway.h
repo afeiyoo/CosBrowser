@@ -4,15 +4,13 @@
 #include <QJsonValue>
 #include <QObject>
 
-#define GW GateWay::instance()
-
 class GateWay : public QObject
 {
     Q_OBJECT
 public:
     explicit GateWay(QObject *parent = nullptr);
 
-    static GateWay* instance();
+    ~GateWay();
 
     void send(int api, const QJsonValue& value);
 

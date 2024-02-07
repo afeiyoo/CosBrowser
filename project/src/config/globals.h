@@ -53,13 +53,6 @@ enum LOG_LEVEL{
 static const QStringList LOG_NAMES
     = QStringList() << "TOTAL" << "DEBUG" << "INFO"
                     << "WARNING" << "ERROR" << "FATAL";
-
-static bool init(){
-    return FileHelper::mkPath(PATH::TMP) && FileHelper::mkPath(PATH::LOG_DIR);
-}
-
-//程序启动时，调用init函数
-static bool OK = init();
 }
 
 #endif // GLOBALS_H

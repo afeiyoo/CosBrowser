@@ -4,6 +4,7 @@
 #include "src/bend/gateway.h"
 #include "src/config/api.h"
 #include "src/middle/signals/mansignals.h"
+#include "src/middle/manglobal.h"
 
 #include <QCompleter>
 #include <QJsonObject>
@@ -35,9 +36,9 @@ LoginDialog::LoginDialog(QWidget *parent)
     ui->btnClose->setProperty("style", "h4");
     ui->btnLogin->setProperty("style", "h4");
 
-    connect(MS, &ManSignals::loginSuccess, this, &LoginDialog::onLoginSucceed);
-    connect(MS, &ManSignals::unLogin, this, &LoginDialog::show);
-    connect(MS, &ManSignals::error, this, &LoginDialog::onLoginError);
+    connect(MG->mSignal, &ManSignals::loginSuccess, this, &LoginDialog::onLoginSucceed);
+    connect(MG->mSignal, &ManSignals::unLogin, this, &LoginDialog::show);
+    connect(MG->mSignal, &ManSignals::error, this, &LoginDialog::onLoginError);
     updateLoginInfo();
 }
 
@@ -49,13 +50,13 @@ LoginDialog::~LoginDialog()
 
 void LoginDialog::updateLoginInfo()
 {
-    QStringList words = MDB->loginNameList();
+    QStringList words = MG->mDb->loginNameList();
     QCompleter* completer = new QCompleter(words);
     ui->lineLoginName->setCompleter(completer);
 
     connect(completer, static_cast<void (QCompleter::*)(const QString&)>(&QCompleter::activated),
             this, [&](const QString& name){
-        LoginInfo info = MDB->loginInfoByName(name);
+        LoginInfo info = MG->mDb->loginInfoByName(name);
         ui->lineSecretID->setText(info.secret_id);
         ui->lineSecretKey->setText(info.secret_key);
         ui->lineRemark->setText(info.remark);
@@ -110,7 +111,7 @@ void LoginDialog::on_btnLogin_clicked()
     QJsonObject params;
     params["secretId"] = ui->lineSecretID->text().trimmed();
     params["secretKey"] = ui->lineSecretKey->text().trimmed();
-    GW->send(API::LOGIN::NORMAL, params);
+    MG->mGate->send(API::LOGIN::NORMAL, params);
 }
 
 void LoginDialog::onLoginSucceed()
@@ -118,13 +119,13 @@ void LoginDialog::onLoginSucceed()
     accept();   //关闭自身，并发送accepted信号(显示主窗口)
     if(ui->checkSaveSection->isChecked()){
         //保存登录信息
-        MDB->saveLoginInfo(
+        MG->mDb->saveLoginInfo(
             ui->lineLoginName->text(), ui->lineSecretID->text(),
             ui->lineSecretKey->text(), ui->lineRemark->text());
         updateLoginInfo();
     }else{
         //删除登录信息
-        MDB->removeLoginInfo(ui->lineSecretID->text());
+        MG->mDb->removeLoginInfo(ui->lineSecretID->text());
     }
 }
 

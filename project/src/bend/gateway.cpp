@@ -4,16 +4,15 @@
 #include "src/config/api.h"
 #include "src/config/loggerproxy.h"
 #include "src/middle/signals/mansignals.h"
-
-Q_GLOBAL_STATIC(GateWay, ins)
+#include "src/middle/manglobal.h"
 
 GateWay::GateWay(QObject *parent)
     : QObject{parent}
 {}
 
-GateWay *GateWay::instance()
+GateWay::~GateWay()
 {
-    return ins();
+    qDebug("delete GateWay ");
 }
 
 void GateWay::send(int api, const QJsonValue &value)
@@ -23,7 +22,7 @@ void GateWay::send(int api, const QJsonValue &value)
             this->dispach(api, value);
         }catch(QString e){
             mError(e);
-            emit MS->error(api, e);
+            emit MG->mSignal->error(api, e);
         }
     });
 }
@@ -44,6 +43,6 @@ void GateWay::apiLogin(const QJsonValue &value)
 {
     QString secretId = value["secretId"].toString();
     QString secretKey = value["secretKey"].toString();
-    MC->login(secretId, secretKey);
-    emit MS->loginSuccess();    //发送登录成功信号
+    MG->mCloud->login(secretId, secretKey);
+    emit MG->mSignal->loginSuccess();    //发送登录成功信号
 }

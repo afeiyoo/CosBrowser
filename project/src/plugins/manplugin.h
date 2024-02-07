@@ -3,8 +3,6 @@
 
 #include <QObject>
 
-#define MP ManPlugin::instance()
-
 class DaoClouds;
 class Version;
 
@@ -13,8 +11,6 @@ class ManPlugin : public QObject
     Q_OBJECT
 public:
     explicit ManPlugin(QObject *parent = nullptr);
-
-    static ManPlugin* instance();
 
     DaoClouds *clouds() const;
 

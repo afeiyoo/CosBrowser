@@ -5,15 +5,13 @@
 
 #include "src/bend/dao/dbs/daologininfosqlite.h"
 
-#define MDB ManDB::instance()
-
 class ManDB : public QObject
 {
     Q_OBJECT
 public:
     explicit ManDB(QObject *parent = nullptr);
 
-    static ManDB* instance();
+    ~ManDB();
 
     void init();
 

@@ -2,13 +2,15 @@
 #include "ui_objectswidget.h"
 #include "src/bend/man/mancloud.h"
 #include "src/fend/uidelegates/bucketdelegate.h"
+#include "src/middle/manglobal.h"
+#include "src/middle/manmodels.h"
 
 ObjectsWidget::ObjectsWidget(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::ObjectsWidget)
 {
     ui->setupUi(this);
-    ui->tableView->setModel(MC->model());
+    ui->tableView->setModel(MG->mModel->model());
     //对第二列设置代理
     ui->tableView->setItemDelegateForColumn(1, new BucketDelegate());
 
