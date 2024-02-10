@@ -6,6 +6,7 @@
 #include "src/middle/signals/mansignals.h"
 #include "src/middle/manglobal.h"
 #include "src/config/exception.h"
+#include "src/config/errorcode.h"
 
 GateWay::GateWay(QObject *parent)
     : QObject{parent}
@@ -21,9 +22,13 @@ void GateWay::send(int api, const QJsonValue &value)
     QtConcurrent::run([=](){
         try{
             this->dispach(api, value);
-        }catch(QString e){
-            mError(e);
-            emit MG->mSignal->error(api, e);
+        }catch(BaseException e){
+            mError(e.msg());
+            emit MG->mSignal->error(api, e.msg());
+        }catch(...){
+            BaseException e = BaseException(EC_100000, QString::fromLocal8Bit("未知错误"));
+            mError(e.msg());
+            emit MG->mSignal->error(api, e.msg());
         }
     });
 }
