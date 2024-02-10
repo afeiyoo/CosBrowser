@@ -15,6 +15,10 @@ public:
 
     static QVariant readAllJson(const QString& filePath);
 
+    static QList<QStringList> readAllCsv(const QString& filePath);
+
+    static void writeFile(const QStringList lines, const QString& filePath);
+
     //拼接目录
     static QString joinPath(const QString& path1, const QString& path2);
 
