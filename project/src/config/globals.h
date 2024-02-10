@@ -13,6 +13,7 @@ namespace PATH {
 static const QString WORK = QDir::currentPath();
 static const QString TMP = FileHelper::joinPath(WORK, "temp");
 static const QString LOG_DIR = FileHelper::joinPath(WORK, "logs");
+static const QString ERROR_CODE_PATH = ":/static/docs/errorcode.csv";
 }
 
 namespace SQLITE {

@@ -20,6 +20,7 @@ SOURCES += \
     src/bend/gateway.cpp \
     src/bend/man/mancloud.cpp \
     src/bend/man/mandb.cpp \
+    src/config/exception.cpp \
     src/config/loggerproxy.cpp \
     src/fend/uicom/breadwidget.cpp \
     src/fend/uicom/mylineedit.cpp \
@@ -52,6 +53,8 @@ HEADERS += \
     src/bend/man/mancloud.h \
     src/bend/man/mandb.h \
     src/config/api.h \
+    src/config/errorcode.h \
+    src/config/exception.h \
     src/config/globals.h \
     src/config/loggerproxy.h \
     src/middle/manglobal.h \

@@ -5,6 +5,7 @@
 #include "src/config/loggerproxy.h"
 #include "src/middle/signals/mansignals.h"
 #include "src/middle/manglobal.h"
+#include "src/config/exception.h"
 
 GateWay::GateWay(QObject *parent)
     : QObject{parent}
