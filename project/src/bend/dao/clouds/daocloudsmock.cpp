@@ -1,5 +1,8 @@
 ﻿#include "daocloudsmock.h"
 #include "src/helper/filehelper.h"
+#include "src/config/errorcode.h"
+#include "src/config/exception.h"
+#include "src/middle/manglobal.h"
 
 #include <QJsonArray>
 #include <QThread>
@@ -23,7 +26,9 @@ QList<MyBucket> DaoCloudsMock::buckets()
         bucket.createDate = v["create_date"].toString();
 
         res.append(bucket);
-        qDebug() << bucket.name << bucket.location << bucket.createDate;
+        mInfo(QString::fromLocal8Bit("name[%1], location[%2], date[%3]").arg(bucket.name,
+                                                                             bucket.location,
+                                                                             bucket.createDate));
     }
 
     return res;
@@ -38,5 +43,6 @@ QList<MyBucket> DaoCloudsMock::login(const QString &secretId, const QString &sec
         if(secretId == v["secretId"].toString() && secretKey == v["secretKey"].toString())
             return buckets();   //登陆成功后，获取桶列表
     }
-    throw QString::fromLocal8Bit("用户名错误");
+
+    throw BaseException(EC_211000, QString::fromLocal8Bit("请检查您的SecretId或SecretKey是否正确"));
 }

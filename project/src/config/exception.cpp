@@ -56,7 +56,7 @@ QString BaseException::msg() const
     static ErrorMap m_map = BaseException::parseErrorCode(GLOBAL::PATH::ERROR_CODE_PATH);
     QString m = QString::fromLocal8Bit("错误(%1): %2").arg(m_code, m_map[m_code]);
     if(m_msg != "")
-        m += QString::fromLocal8Bit(", 详情: %1").arg(msg);
+        m += QString::fromLocal8Bit(", 详情: %1").arg(m_msg);
     return m;
 }
 
