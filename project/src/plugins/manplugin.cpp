@@ -1,5 +1,4 @@
 ﻿#include "manplugin.h"
-
 #include "src/bend/dao/clouds/daocloudsmock.h"
 #include "src/bend/dao/configs/versionjson.h"
 #include "src/config/globals.h"
@@ -7,6 +6,7 @@
 #include "src/bend/dao/logs/loggerqdebug.h"
 #include "src/config/loggerproxy.h"
 #include "src/middle/manglobal.h"
+#include "src/bend/dao/clouds/daocloudscos.h"
 
 ManPlugin::ManPlugin(QObject *parent)
     : QObject{parent}
@@ -26,7 +26,7 @@ void ManPlugin::installPlugins(int argc, char* argv[])
 
     m_version->setVersion();    //从配置文件中读取版本号
     if(m_version->major() == GLOBAL::VERSION::MAJOR_BUSINESS){
-        m_clouds = new DaoCloudsMock(":/static/testing/business.json");
+        m_clouds = new DaoCloudsCos();
     }else{
         m_clouds = new DaoCloudsMock(":/static/testing/custom.json");
     }

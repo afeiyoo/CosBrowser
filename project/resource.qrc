@@ -7,5 +7,6 @@
         <file>static/sql/login_info.sql</file>
         <file>static/versions/config_default.json</file>
         <file>static/docs/errorcode.csv</file>
+        <file>static/configs/cosconfig.json</file>
     </qresource>
 </RCC>
