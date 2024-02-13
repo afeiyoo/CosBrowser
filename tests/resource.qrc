@@ -1,5 +1,5 @@
 <RCC>
     <qresource prefix="/">
-        <file>testfile.txt</file>
+        <file>static/testfile.txt</file>
     </qresource>
 </RCC>
