@@ -1,6 +1,6 @@
 ﻿{
-    "SecretId":"AKIDypkgvHVfgYH0oeN0X5Tkw9TvKhAhCYn5", 
-    "SecretKey":"KjJl6LOQf4bCoT5lJymXDxtwwATgvIeu", 
+    "SecretId":"", 
+    "SecretKey":"", 
     "Region":"ap-nanjing",
     "SignExpiredTime":360,              
     "ConnectTimeoutInms":6000,          
