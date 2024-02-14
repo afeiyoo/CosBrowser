@@ -46,3 +46,28 @@ QList<MyBucket> DaoCloudsMock::login(const QString &secretId, const QString &sec
 
     throw BaseException(EC_211000, QString::fromLocal8Bit("请检查您的SecretId或SecretKey是否正确"));
 }
+
+bool DaoCloudsMock::isBucketExists(const QString &bucketName)
+{
+    return false;
+}
+
+QString DaoCloudsMock::getBucketLocation(const QString &bucketName)
+{
+    return QString();
+}
+
+void DaoCloudsMock::putBucket(const QString &bucketName, const QString &location)
+{
+
+}
+
+void DaoCloudsMock::deleteBucket(const QString &bucketName)
+{
+
+}
+
+QList<MyObject> DaoCloudsMock::getObjects(const QString &bucketName, const QString &dir)
+{
+    return QList<MyObject>();
+}
