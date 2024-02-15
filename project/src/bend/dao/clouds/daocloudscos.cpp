@@ -78,7 +78,15 @@ bool DaoCloudsCos::isBucketExists(const QString &bucketName)
 QString DaoCloudsCos::getBucketLocation(const QString &bucketName)
 {
     CosAPI cos = CosAPI(*m_config);
-    return QString(cos.GetBucketLocation(bucketName.toStdString()).c_str());
+    QString location(cos.GetBucketLocation(bucketName.toStdString()).c_str());
+    if(location != "")
+        return location;
+
+    MyBucket bucket = getBucketByName(bucketName);
+    if(bucket.isValid())
+        return bucket.location;
+
+    throw BaseException(EC_332000, QString::fromLocal8Bit("获取同位置失败 %1").arg(bucketName));
 }
 
 void DaoCloudsCos::putBucket(const QString &bucketName, const QString &location)
@@ -134,6 +142,60 @@ QList<MyObject> DaoCloudsCos::getObjects(const QString &bucketName, const QStrin
     return getDirList(resp, dir) + getFileList(resp, dir);
 }
 
+void DaoCloudsCos::putObject(const QString &bucketName, const QString &key, const QString &localPath, const TransProgressCallback &callback)
+{
+    // 初始化上传
+    SharedAsyncContext context;
+    // 异步上传
+    AsyncPutObjectReq put_req(
+        bucketName.toLocal8Bit().data(),
+        key.toLocal8Bit().data(),
+        localPath.toLocal8Bit().data()
+        );
+    // 设置上传进度回调
+    if (callback)
+        put_req.SetTransferProgressCallback(callback);
+    QString location = getBucketLocation(bucketName);
+    m_config->SetRegion(location.toStdString());
+    CosAPI cos(*m_config);
+
+    // 开始上传对象
+    context = cos.AsyncPutObject(put_req);
+    context->WaitUntilFinish();  // 等待上传结束
+    CosResult result = context->GetResult();
+
+    if (!result.IsSucc()) {
+        throwError(EC_332400, result);
+    }
+}
+
+void DaoCloudsCos::getObject(const QString &bucketName, const QString &key, const QString &localPath, const TransProgressCallback &callback)
+{
+    // 下载初始化
+    SharedAsyncContext context;
+    // 异步下载
+    AsyncGetObjectReq get_req(
+        bucketName.toLocal8Bit().data(),
+        key.toLocal8Bit().data(),
+        localPath.toLocal8Bit().data()
+        );
+    //设置下载回调
+    if (callback)
+        get_req.SetTransferProgressCallback(callback);
+
+    QString location = getBucketLocation(bucketName);
+    m_config->SetRegion(location.toStdString());
+    CosAPI cos(*m_config);
+
+    // 开始下载对象
+    context = cos.AsyncGetObject(get_req);
+    context->WaitUntilFinish();
+    CosResult result = context->GetResult();
+    if (!result.IsSucc()) {
+        throwError(EC_332500, result);
+    }
+}
+
 QList<MyObject> DaoCloudsCos::getDirList(qcloud_cos::GetBucketResp &resp, const QString &dir)
 {
     QList<MyObject> res;
@@ -182,5 +244,17 @@ void DaoCloudsCos::throwError(const QString &code, qcloud_cos::CosResult &result
                       .arg(result.GetErrorCode().c_str(), result.GetErrorMsg().c_str());
     qDebug() << msg;
     throw BaseException(code, msg);
+}
+
+MyBucket DaoCloudsCos::getBucketByName(const QString &bucketName)
+{
+    QList<MyBucket> bs = buckets();
+
+    for(const auto& b : qAsConst(bs)){
+        if(b.name == bucketName){
+            return b;
+        }
+    }
+    return MyBucket();
 }
 

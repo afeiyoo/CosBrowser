@@ -25,6 +25,16 @@ public:
 
     QList<MyObject> getObjects(const QString& bucketName, const QString& dir) override;
 
+    void putObject(const QString& bucketName,
+                   const QString& key,
+                   const QString& localPath,
+                   const TransProgressCallback& callback) override;
+
+    void getObject(const QString& bucketName,
+                   const QString& key,
+                   const QString& localPath,
+                   const TransProgressCallback& callback) override;
+
 private:
     QJsonValue m_mock;
 };
