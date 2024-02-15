@@ -196,6 +196,14 @@ void DaoCloudsCos::getObject(const QString &bucketName, const QString &key, cons
     }
 }
 
+bool DaoCloudsCos::isObjectExists(const QString &bucketName, const QString &key)
+{
+    QString location = getBucketLocation(bucketName);
+    m_config->SetRegion(location.toStdString());
+    CosAPI cos(*m_config);
+    return cos.IsObjectExist(bucketName.toStdString(), key.toLocal8Bit().data());
+}
+
 QList<MyObject> DaoCloudsCos::getDirList(qcloud_cos::GetBucketResp &resp, const QString &dir)
 {
     QList<MyObject> res;

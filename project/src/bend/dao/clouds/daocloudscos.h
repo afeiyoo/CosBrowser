@@ -40,6 +40,8 @@ public:
                    const QString& localPath,
                    const TransProgressCallback& callback) override;
 
+    bool isObjectExists(const QString& bucketName, const QString& key);
+
 private:
     QList<MyObject> getDirList(qcloud_cos::GetBucketResp& resp, const QString& dir);
 
