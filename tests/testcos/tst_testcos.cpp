@@ -1,5 +1,7 @@
 ﻿#include "tst_testcos.h"
 
+#include "src/config/exception.h"
+
 TestCos::TestCos() {}
 
 TestCos::~TestCos() {}
@@ -80,4 +82,12 @@ void TestCos::test_getObjects2()
 
     QList<MyObject> objList = m_cos.getObjects(m_bucketName, dir);
     QCOMPARE(objList.size(), expected);
+}
+
+void TestCos::test_getObjectError()
+{
+    // QVERIFY_EXCEPTION_THROWN 捕获预期异常
+    QVERIFY_EXCEPTION_THROWN(
+        m_cos.getObjects("file", ""),
+        BaseException);
 }

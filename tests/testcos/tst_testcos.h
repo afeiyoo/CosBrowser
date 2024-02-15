@@ -28,6 +28,7 @@ private slots:
     void test_getObjects();
     void test_getObjects2_data();
     void test_getObjects2();
+    void test_getObjectError();
 
 private:
     DaoCloudsCos m_cos;
