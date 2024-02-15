@@ -54,9 +54,30 @@ void TestCos::test_deleteBucket()
 
 void TestCos::test_getObjects()
 {
+    QSKIP("SKIP test getObjects");
     QList<MyObject> objList = m_cos.getObjects(m_bucketName, "");
     QCOMPARE(objList.size(), 3);
 
     objList = m_cos.getObjects(m_bucketName, "test/");
     QCOMPARE(objList.size(), 1);
+}
+
+void TestCos::test_getObjects2_data()
+{
+    // 数据驱动：第一阶段，准备测试数据，函数名称需要_data结尾
+    QTest::addColumn<QString>("dir");
+    QTest::addColumn<int>("expected");
+
+    QTest::newRow("root") << "" << 3;
+    QTest::newRow("subdir") << "test/" << 1;
+}
+
+void TestCos::test_getObjects2()
+{
+    // 数据驱动：第二阶段，从数据表读取数据，并执行比较
+    QFETCH(QString, dir);
+    QFETCH(int, expected);
+
+    QList<MyObject> objList = m_cos.getObjects(m_bucketName, dir);
+    QCOMPARE(objList.size(), expected);
 }
