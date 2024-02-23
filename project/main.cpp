@@ -2,9 +2,6 @@
 #include "src/fend/uilogin/logindialog.h"
 #include "src/middle/manglobal.h"
 
-#include "src/bend/man/mandb.h"
-#include "src/bend/man/mancloud.h"
-
 #include <QApplication>
 
 int main(int argc, char *argv[])
