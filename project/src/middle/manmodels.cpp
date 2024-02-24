@@ -6,7 +6,7 @@ ManModels::ManModels(QObject *parent)
     : QObject{parent}
 {
     m_model = new QStandardItemModel(this);
-    connect(MG->mSignal, &ManSignals::bucketSuccess, this, &ManModels::setBuckets);
+    connect(MG->mSignal, &ManSignals::bucketsSuccess, this, &ManModels::setBuckets);
 }
 
 void ManModels::setBuckets(const QList<MyBucket>& buckets)
