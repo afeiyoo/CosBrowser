@@ -13,10 +13,10 @@
 #include <QString>
 
 LoginDialog::LoginDialog(QWidget *parent)
-    : QDialog(parent)
+    : UiQosDialog(parent)
     , ui(new Ui::LoginDialog)
 {
-    ui->setupUi(this);
+    ui->setupUi(body());
     //取消默认标题栏
     this->setWindowFlags(Qt::CustomizeWindowHint);
 
@@ -27,15 +27,16 @@ LoginDialog::LoginDialog(QWidget *parent)
     //lineSecretKey控件安装事件过滤器
     ui->lineSecretKey->installEventFilter(this);
 
-    // style是一个自定义属性，用于属性选择器
-    ui->labelTitle->setProperty("style", "h3");
-    ui->labelSecretID->setProperty("style", "h4");
-    ui->labelLoginName->setProperty("style", "h4");
-    ui->labelSecretKey->setProperty("style", "h4");
-    ui->labelRemark->setProperty("style", "h4");
-    ui->btnClose->setProperty("style", "h4");
-    ui->btnLogin->setProperty("style", "h4");
+    setTitle(QString::fromLocal8Bit("登录"));
 
+    // style是一个自定义属性，用于属性选择器
+    ui->labelSecretID->setProperty("style", "h5");
+    ui->labelLoginName->setProperty("style", "h5");
+    ui->labelSecretKey->setProperty("style", "h5");
+    ui->labelRemark->setProperty("style", "h5");
+    ui->btnLogin->setProperty("style", "h5");
+
+    connect(ui->btnLogin, &QPushButton::clicked, this, &LoginDialog::onBtnLoginClicked);
     connect(MG->mSignal, &ManSignals::loginSuccess, this, &LoginDialog::onLoginSucceed);
     connect(MG->mSignal, &ManSignals::unLogin, this, &LoginDialog::show);
     connect(MG->mSignal, &ManSignals::error, this, &LoginDialog::onLoginError);
@@ -64,24 +65,6 @@ void LoginDialog::updateLoginInfo()
     });
 }
 
-void LoginDialog::mousePressEvent(QMouseEvent *event)
-{
-    if(event->button() == Qt::LeftButton){
-        m_start = event->pos(); //返回的是相对于当前控件原点的位置
-    }
-    QDialog::mousePressEvent(event);    //调用基类的处理函数
-}
-
-void LoginDialog::mouseMoveEvent(QMouseEvent *event)
-{
-    if(event->buttons() & Qt::LeftButton){
-        //鼠标偏移量+控件原点位置
-        QPoint targetPos = event->pos() - m_start + pos();
-        this->move(targetPos);
-    }
-    QDialog::mouseMoveEvent(event);
-}
-
 bool LoginDialog::eventFilter(QObject *watched, QEvent *event)
 {
     //watched 需要关注的控件对象
@@ -99,13 +82,7 @@ bool LoginDialog::eventFilter(QObject *watched, QEvent *event)
     return QDialog::eventFilter(watched, event);
 }
 
-void LoginDialog::on_btnClose_clicked()
-{
-    reject();
-}
-
-
-void LoginDialog::on_btnLogin_clicked()
+void LoginDialog::onBtnLoginClicked()
 {
     //进行登录信息验证
     QJsonObject params;

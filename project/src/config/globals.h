@@ -14,6 +14,14 @@ static const QString WORK = QDir::currentPath();
 static const QString TMP = FileHelper::joinPath(WORK, "temp");
 static const QString LOG_DIR = FileHelper::joinPath(WORK, "logs");
 static const QString ERROR_CODE_PATH = ":/static/docs/errorcode.csv";
+
+static const QString LOGO_PATH = ":/static/imgs/logo.png";
+static const QString MAX_PATH= ":/static/imgs/Maximize-1.png";
+static const QString MAX_HOVER_PATH = ":/static/imgs/Maximize-2.png";
+static const QString NORMAL_PATH = ":/static/imgs/Maximize-3.png";
+static const QString NORMAL_HOVER_PATH = ":/static/imgs/Maximize-4.png";
+static const QString MIN_PATH = ":/static/imgs/Minimize-1.png";
+static const QString MIN_HOVER_PATH = ":/static/imgs/Minimize-2.png";
 }
 
 namespace SQLITE {
