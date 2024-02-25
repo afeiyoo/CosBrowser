@@ -78,6 +78,7 @@ protected:
     Ui::UiBaseDialog *m_ui;
 
 private:
+    int m_sz = 20;
     QPoint m_start;
 };
 #endif // UIBASEDIALOG_H

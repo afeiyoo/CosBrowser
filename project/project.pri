@@ -39,6 +39,7 @@ SOURCES += \
     $$PWD/src/fend/uicom/mylineedit.cpp \
     $$PWD/src/fend/uicom/pagewidget.cpp \
     $$PWD/src/fend/uicom/uibasedialog.cpp \
+    $$PWD/src/fend/uicom/uiqosdialog.cpp \
     $$PWD/src/fend/uidelegates/bucketdelegate.cpp \
     $$PWD/src/fend/uilogin/logindialog.cpp \
     $$PWD/src/fend/uimain/bucketswidget.cpp \
@@ -55,6 +56,7 @@ SOURCES += \
 
 HEADERS += \
     $$PWD/src/fend/uicom/uibasedialog.h \
+    $$PWD/src/fend/uicom/uiqosdialog.h \
     $$PWD/src/plugins/manplugin.h \
     $$PWD/src/bend/dao/clouds/daoclouds.h \
     $$PWD/src/bend/dao/clouds/daocloudscos.h \
@@ -95,6 +97,7 @@ FORMS += \
     $$PWD/src/fend/uicom/breadwidget.ui \
     $$PWD/src/fend/uicom/pagewidget.ui \
     $$PWD/src/fend/uicom/uibasedialog.ui \
+    $$PWD/src/fend/uicom/uiqosdialog.ui \
     $$PWD/src/fend/uilogin/logindialog.ui \
     $$PWD/src/fend/uimain/bucketswidget.ui \
     $$PWD/src/fend/uimain/objectswidget.ui \

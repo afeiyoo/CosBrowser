@@ -1,4 +1,4 @@
-/*设置Qss的默认样式*/
+﻿/*设置Qss的默认样式*/
 *{
 /*白色主题*/
 background-color:white;
@@ -45,11 +45,6 @@ QLineEdit:hover{
 QLabel{
 	background-color: transparent;
 }
-QLabel#labelLogo{
-	min-width: 32px;
-	min-height: 32px;
-	border-image: url(":/static/imgs/qt.png");
-}
 
 /*通用按钮设置*/
 QPushButton{
@@ -68,8 +63,4 @@ QPushButton#btnLogin{
 	background: #1296db;
 	color:white;
     font: bold 12pt;
-}
-
-QPushButton#btnClose:hover{
-	color:red;
 }

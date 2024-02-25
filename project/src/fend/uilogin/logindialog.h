@@ -1,7 +1,7 @@
 ﻿#ifndef LOGINDIALOG_H
 #define LOGINDIALOG_H
 
-#include <QDialog>
+#include "src/fend/uicom/uiqosdialog.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -9,26 +9,21 @@ class LoginDialog;
 }
 QT_END_NAMESPACE
 
-class LoginDialog : public QDialog
+class LoginDialog : public UiQosDialog
 {
     Q_OBJECT
 
 public:
     LoginDialog(QWidget *parent = nullptr);
+
     ~LoginDialog();
 
     void updateLoginInfo();
 protected:
-    void mousePressEvent(QMouseEvent *event);
-
-    void mouseMoveEvent(QMouseEvent *event);
-
     bool eventFilter(QObject *watched, QEvent *event);
 
 private slots:
-    void on_btnClose_clicked();
-
-    void on_btnLogin_clicked();
+    void onBtnLoginClicked();
 
     void onLoginSucceed();
 
@@ -36,7 +31,5 @@ private slots:
 
 private:
     Ui::LoginDialog *ui;
-    /** 记录鼠标的初始位置 */
-    QPoint m_start;
 };
 #endif // LOGINDIALOG_H

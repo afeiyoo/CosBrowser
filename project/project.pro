@@ -5,3 +5,7 @@ SOURCES += \
 
 RESOURCES += \
     $$PWD/resource.qrc
+
+FORMS +=
+
+HEADERS +=
